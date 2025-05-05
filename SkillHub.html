@@ -1,0 +1,375 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkilHub - School Library</title>
+    <style>
+        /* Reset and General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f0e1; /* Carton (light beige) */
+            color: #333;
+        }
+
+        /* Color Palette */
+        :root {
+            --purple: #6b3fa0;
+            --carton: #f5f0e1;
+            --dark-purple: #4a2c6e;
+            --light-purple: #e6d9f2;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: var(--purple);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--light-purple);
+        }
+
+        /* Header / Landing Page */
+        header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: var(--light-purple);
+        }
+
+        header h1 {
+            color: var(--purple);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--purple);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: var(--dark-purple);
+        }
+
+        /* Quick Links Section */
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 2rem;
+            background-color: var(--carton);
+        }
+
+        .quick-links a {
+            background-color: var(--purple);
+            color: white;
+            padding: 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .quick-links a:hover {
+            transform: scale(1.05);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: var(--purple);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        label {
+            font-weight: bold;
+            color: var(--purple);
+        }
+
+        input, select, textarea {
+            padding: 0.5rem;
+            border: 2px solid var(--light-purple);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--purple);
+        }
+
+        button {
+            background-color: var(--purple);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--dark-purple);
+        }
+
+        /* Book Grid */
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .book-card {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .book-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--purple);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .quick-links a {
+                width: 100%;
+            }
+        }
+
+        /* Accessibility */
+        a:focus, button:focus {
+            outline: 3px solid var(--light-purple);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#borrow">Borrow a Book</a></li>
+            <li><a href="#signup">Sign Up</a></li>
+            <li><a href="#buy">Pick/Buy a Book</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Landing Page -->
+    <header>
+        <h1>Welcome to SkilHub Library</h1>
+        <p>Your friendly school library built by students, for students and the community. Explore, borrow, or buy books with ease!</p>
+        <a href="#signup" class="cta-button">Get Started</a>
+    </header>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+        <a href="#about">About the Library</a>
+        <a href="#faq">Borrowing Rules</a>
+        <a href="#borrow">Book Catalog</a>
+        <a href="#contact">Contact Us</a>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Borrow a Book -->
+        <section id="borrow">
+            <h2>Borrow a Book</h2>
+            <p>Browse our collection and reserve your next read!</p>
+            <div class="book-grid">
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/150" alt="Book cover: The Great Adventure">
+                    <h3>The Great Adventure</h3>
+                    <p>Author: J. Smith</p>
+                    <a href="#" class="cta-button">Reserve</a>
+                </div>
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/150" alt="Book cover: Science Wonders">
+                    <h3>Science Wonders</h3>
+                    <p>Author: L. Brown</p>
+                    <a href="#" class="cta-button">Reserve</a>
+                </div>
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/150" alt="Book cover: Mystery Tales">
+                    <h3>Mystery Tales</h3>
+                    <p>Author: K. Lee</p>
+                    <a href="#" class="cta-button">Reserve</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sign Up / Register -->
+        <section id="signup">
+            <h2>Sign Up</h2>
+            <p>Create an account to borrow books or get student discounts!</p>
+            <form>
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+
+                <label for="user-type">I am a:</label>
+                <select id="user-type" required>
+                    <option value="student">Student</option>
+                    <option value="public">Public User</option>
+                </select>
+
+                <label for="student-id">Student ID (Optional)</label>
+                <input type="text" id="student-id" placeholder="Enter for discounts">
+
+                <button type="submit">Register</button>
+            </form>
+        </section>
+
+        <!-- Pick/Buy a Book -->
+        <section id="buy">
+            <h2>Pick or Buy a Book</h2>
+            <p>Check out our bookstore for new and exciting titles!</p>
+            <div class="book-grid">
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/150" alt="Book cover: Space Journey">
+                    <h3>Space Journey</h3>
+                    <p>Author: M. Star</p>
+                    <p>$12.99</p>
+                    <a href="#" class="cta-button">Add to Cart</a>
+                </div>
+                <div class="book-card">
+                    <img src="https://via.placeholder.com/150" alt="Book cover: History Unraveled">
+                    <h3>History Unraveled</h3>
+                    <p>Author: P. Time</p>
+                    <p>$15.99</p>
+                    <a href="#" class="cta-button">Add to Cart</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About the Library -->
+        <section id="about">
+            <h2>About SkilHub Library</h2>
+            <p>SkilHub is a student-built library website designed to make reading accessible and fun for everyone. Our mission is to connect our school community and the public with great books!</p>
+        </section>
+
+        <!-- Borrowing Rules / FAQ -->
+        <section id="faq">
+            <h2>Borrowing Rules & FAQ</h2>
+            <p><strong>How long can I borrow a book?</strong> Books can be borrowed for 2 weeks.</p>
+            <p><strong>Do students get discounts?</strong> Yes, students with a valid ID get 10% off purchases!</p>
+            <p><strong>Can I renew my borrowing?</strong> Yes, contact us to extend your borrowing period.</p>
+        </section>
+
+        <!-- Contact Us -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Have questions? Reach out to us!</p>
+            <form>
+                <label for="contact-name">Name</label>
+                <input type="text" id="contact-name" required>
+
+                <label for="contact-email">Email</label>
+                <input type="email" id="contact-email" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" rows="5" required></textarea>
+
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 SkilHub Library. Built with 💜 by a student for our school!</p>
+    </footer>
+</body>
+</html>
